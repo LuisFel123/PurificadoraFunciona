@@ -17,10 +17,10 @@ export const UserProvider = ({ children }) => {
                 'http://127.0.0.1:8000/api/validar',
                 { email, password },
                 //{
-                  //  headers: {
-                        //Authorization: `Bearer ${token}`
+                      //Authorization: `Bearer ${token}`
                     //}
-                //}
+                //} //  headers: {
+                   
             );
             try {
                 setUser(response.data.user);

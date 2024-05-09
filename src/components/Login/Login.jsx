@@ -1,18 +1,23 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { useContext }from 'react';
-import { Container, Row, Col, Card, Form, Button, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap';
 import { UserContext } from '../../UserContext';
 
-
+import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const { loginUser } = useContext(UserContext);
     const { registerUser } = useContext(UserContext);
-
     const [email, setEmail] = useState('');
+    const navigacion=useNavigate();
     const [password, setPassword] = useState('');
+    const [emailEmpty, setEmailEmpty] = useState(false);
+    const [passwordEmpty, setPasswordEmpty] = useState(false);
     const [name, setName] = useState('');
+    const [nameEmpty, setnNameEmpty] = useState(false);
+
     const [show, setShow] = useState(false);
     const [showDos, setShowDos] = useState(false);
     //const handleShow = () => setShow(true);
@@ -98,7 +103,19 @@ function Login() {
         };
     */
     const handleCheckUser = async () => {
+// Verificar si los campos están llenos
+if (email.trim() === '') {
+    setEmailEmpty(true);
+} else {
+    setEmailEmpty(false);
+}
 
+if (password.trim() === '') {
+    setPasswordEmpty(true);
+} else {
+    setPasswordEmpty(false);
+}
+if (email.trim() !== '' && password.trim() !== '') {
         try {
             const success = await loginUser(email, password);
             if (success) {
@@ -110,6 +127,8 @@ function Login() {
                 localStorage.setItem("token", token2);
                 setShow(true);
                 setIsLoggedIn(true);
+                navigacion("/home");
+
             } else {
                 console.log('Verifique usuario y contraseña')
                 setIsLoggedInDos(true);
@@ -121,6 +140,7 @@ function Login() {
             setIsLoggedInDos(true);
             setShowDos(true);
         }
+    }
     };
 
     /*
@@ -162,6 +182,24 @@ function Login() {
     */
 
     const handleInsertUser = async () => {
+        if (email.trim() === '') {
+            setEmailEmpty(true);
+        } else {
+            setEmailEmpty(false);
+        }
+        
+        if (password.trim() === '') {
+            setPasswordEmpty(true);
+        } else {
+            setPasswordEmpty(false);
+        }
+        if(name.trim()==''){
+            setnNameEmpty(true);
+        }else{
+            setnNameEmpty(false);
+        }
+        if (email.trim() !== '' && password.trim() !== '' && name.trim() !='') {
+
         try {
             const success = await registerUser(name, email, password);
             if (success) {
@@ -182,170 +220,134 @@ function Login() {
             setIsLoggedInTarje(true);
             setShowTarje(true);
         }
+    }
     };
 
     return (
         <div className="Login">
+        <Container className="h-100 d-flex justify-content-center align-items-center">
+            <Row className="border rounded shadow p-4 rowCostum">
+            <Col md={6} className="p-4  border-end">
+    <Card className="mt-3 text-center custom ">
+        <h3>Iniciar Sesión</h3>
+        <div className="custom-form">
+            <div className="mt-4">
+                <div className="mb-3 d-flex align-items-center">
+                    <label htmlFor="email" className="custom-label me-3">Correo Electrónico</label>
+                    <input
+                        type="email"
+                        className={`custom-input ${emailEmpty ? 'empty-input' : ''}`}
+                        id="email"
+                        placeholder="Ingrese su correo electrónico"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                {emailEmpty && <p className="error-message">Por favor, ingrese su correo electrónico.</p>}
 
-            <Container>
-                <Row className="justify-content-center mt-5">
-                    <Col md={6}>
-                        <Card className="mt-3 text-center" border="danger">
-                            <Card.Body >
-                                <Card.Title className="text-center">Iniciar Sesión</Card.Title>
+                <div className="mb-3 d-flex align-items-center">
+                    <label htmlFor="password" className="custom-label me-3">Contraseña</label>
+                    <input
+                        type="password"
+                        className={`custom-input ${passwordEmpty ? 'empty-input' : ''}`}
+                        id="password"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                {passwordEmpty && <p className="error-message">Por favor, ingrese su contraseña.</p>}
 
-                                <Form>
-
-
-                                    <Form.Group className='mt-4' controlId="email">
-                                        <Form.Label>Correo Electrónico</Form.Label>
-                                        <Form.Control
-                                            type="email"
-                                            placeholder="Ingrese su correo electrónico"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-
-                                            required
-                                        />
-                                    </Form.Group>
-
-                                    <Form.Group className='mt-4' controlId="password">
-                                        <Form.Label>Contraseña</Form.Label>
-                                        <Form.Control
-                                            type="password"
-                                            placeholder="Contraseña"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            required
-                                        />
-                                    </Form.Group>
-
-                                    <Button className='mt-3' variant="primary" onClick={handleCheckUser} type='button'>
-                                        Iniciar Sesión
-                                    </Button>
-
-
-                                    <div></div>
-
-
-                                    <Button className='mt-3' variant="danger" onClick={handleShowTres}>
-                                        Registrarse
-                                    </Button>
-
-                                    <Modal show={showTres} onHide={handleCloseTres}>
-                                        <Modal.Header closeButton>
-                                            <Modal.Title>Inserte su información para Registrarse</Modal.Title>
-                                        </Modal.Header>
-
-                                        <Modal.Body>
-
-                                            <Form>
-                                                <Form.Group className="mb-3" controlId="formNombre">
-                                                    <Form.Label>Nombre</Form.Label>
-                                                    <Form.Control
-                                                        type="text"
-                                                        placeholder="Nombre"
-                                                        value={name}
-                                                        onChange={(e) => setName(e.target.value)}
-                                                        required />
-                                                </Form.Group>
-
-
-                                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                                    <Form.Label>Correo electrónico</Form.Label>
-                                                    <Form.Control
-                                                        type="email"
-                                                        placeholder="example1@hotmail.com"
-                                                        value={email}
-                                                        onChange={(e) => setEmail(e.target.value)}
-                                                        required
-                                                    />
-                                                    <Form.Text className="text-muted">
-                                                        Nunca compartiremos su correo electrónico con nadie más.
-                                                    </Form.Text>
-                                                </Form.Group>
-
-                                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                                    <Form.Label>Contraseña</Form.Label>
-                                                    <Form.Control
-                                                        type="password"
-                                                        placeholder="Password"
-                                                        value={password}
-                                                        onChange={(e) => setPassword(e.target.value)}
-                                                        required
-                                                    />
-                                                </Form.Group>
-
-                                                <Button variant="success" type="button" onClick={handleInsertUser} >
-                                                    Registrar información
-                                                </Button>
-
-                                                <Button className="mx-2" variant="danger" onClick={handleCloseTres}>
-                                                    Cerrar
-                                                </Button>
-
-                                            </Form>
-
-                                        </Modal.Body>
-
-                                    </Modal>
-
-                                    {isLoggedIn && (
-
-
-                                        <Modal show={show} onHide={handleClose}>
-                                            <Modal.Header closeButton>
-                                                <Modal.Title>Bienvenido</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>
-                                                <p>Haz iniciado sesión exitosamente.</p>
-                                            </Modal.Body>
-                                            <Modal.Footer>
-
-
-
-                                            </Modal.Footer>
-                                        </Modal>
-
-                                    )}
-
-                                    {isLoggedInDos && (
-                                        <Modal show={showDos} onHide={handleCloseDos}>
-                                            <Modal.Header closeButton>
-                                                <Modal.Title>Alerta!!</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>
-                                                <p>Verifique usuario y contraseña.</p>
-                                            </Modal.Body>
-                                            <Modal.Footer>
-                                            </Modal.Footer>
-                                        </Modal>
-                                    )}
-
-                                    {isLoggedInTarje && (
-                                        <Modal show={showTarje} onHide={handleCloseTarje} >
-                                            <Modal.Header closeButton className="bg-dark text-white">
-                                                <Modal.Title>Alerta!!</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>
-                                                <p>Verifique Los Datos Ingresados.</p>
-                                            </Modal.Body>
-                                            <Modal.Footer className="bg-dark text-white">
-                                            </Modal.Footer>
-                                        </Modal>
-                                    )}
-
-
-                                </Form>
-
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
+            </div>
+            {isLoggedInDos && (
+            <p className="error-message">Hubo un error al iniciar sesión. Verifique su usuario y contraseña.</p>
+        )}
+            <button className='custom-button mt-3' onClick={handleCheckUser} type='button'>
+                Iniciar Sesión
+            </button>
+            
         </div>
-    );
+    </Card>
+</Col>
 
+<Col md={6} className="ps-4">
+    <div className="welcome-message  text-center">
+        <h2>Bienvenido</h2>
+        <div className="image-animation">
+            <img src="/gota.png" alt="Imagen de bienvenida" className="animated-image" />
+        </div>
+        <p onClick={() => setShowTres(true)}>¿Nuevo aquí? Regístrate para obtener una cuenta.</p>
+        <div className="mt-3">
+            <a href="#" className="custom-link">¿Olvidaste tu contraseña?</a>
+        </div>
+    </div>
+</Col>
+
+            </Row>
+        </Container>
+        <Modal show={showTres} onHide={handleCloseTres}>
+    <Modal.Header closeButton>
+        <Modal.Title>Inserte su información para Registrarse</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+        <div className="custom-form">
+            <div className="mb-3">
+                <label htmlFor="formNombre">Nombre</label>
+                <input
+                    type="text"
+                    className={`form-control ${nameEmpty ? 'empty-input' : ''}`}
+                    id="formNombre"
+                    placeholder="Nombre"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
+                {nameEmpty && <p className="error-message">Por favor, ingrese su nombre.</p>}
+            </div>
+            <div className="mb-3">
+                <label htmlFor="formBasicEmail">Correo electrónico</label>
+                <input
+                    type="email"
+                    className={`form-control ${emailEmpty ? 'empty-input' : ''}`}
+                    id="formBasicEmail"
+                    placeholder="example1@hotmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                {emailEmpty && <p className="error-message">Por favor, ingrese su correo electrónico.</p>}
+                <small className="text-muted">Nunca compartiremos su correo electrónico con nadie más.</small>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="formBasicPassword">Contraseña</label>
+                <input
+                    type="password"
+                    className={`form-control ${passwordEmpty ? 'empty-input' : ''}`}
+                    id="formBasicPassword"
+                    placeholder="Contraseña"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                {passwordEmpty && <p className="error-message">Por favor, ingrese su contraseña.</p>}
+            </div>
+        </div>
+    </Modal.Body>
+    <Modal.Footer>
+        <Button variant="success" type="button" onClick={handleInsertUser}>
+            Registrar información
+        </Button>
+        <Button variant="danger" onClick={handleCloseTres}>
+            Cerrar
+        </Button>
+    </Modal.Footer>
+</Modal>
+
+    </div>
+);
 }
+
 
 export default Login;
