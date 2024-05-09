@@ -1,0 +1,154 @@
+.Login {
+    background-image: url('/FONDOLOGIN.webp');
+    background-size: cover;
+    height: 100vh;
+}
+.rowCostum{
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+
+.divider {
+    border-right: 1px solid #dee2e6; 
+    height: 100%;
+}
+
+.login-container {
+    border: none; 
+}
+
+
+.welcome-message {
+    color: #000000;
+
+}
+.welcome-message h2 {
+    font-size: 24px;
+}
+
+.welcome-message p {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.welcome-message p {
+    cursor: pointer;
+}
+
+.login-container a {
+    color: #007bff; 
+}
+
+.custom-form {
+    background-color: transparent; 
+    border: none; 
+}
+
+.custom-label {
+    font-size: 16px;
+    color: #333;
+}
+.custom {
+    background-color: transparent !important; 
+    border: none !important; 
+}
+.custom-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.custom-button {
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+    background-color: #0056b3;
+}
+
+.custom-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.custom-link:hover {
+    text-decoration: underline;
+}
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-title {
+    font-size: 20px;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.custom-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.custom-link:hover {
+    text-decoration: underline;
+}
+
+
+.image-animation {
+    animation: growShrink 3s infinite alternate; 
+}
+
+@keyframes growShrink {
+    0% {
+        transform: scale(1); 
+    }
+    50% {
+        transform: scale(1.2); 
+    }
+    100% {
+        transform: scale(1); 
+    }
+}
+
+.animated-image {
+    width: 120px;
+    height: auto; 
+}
+.border-end {
+    border-right: 3px solid #007bff; 
+    transition: border-width 0.3s ease; 
+}
+
+.border-end:hover {
+    border-right-width: 5px; }
+    .empty-input{
+        border-color: red;
+    }
+    .error-message {
+        color: red;
+    }
+    
