@@ -1,0 +1,83 @@
+.home-container {
+    background-color: #f0f8ff; /* Azul claro para el fondo */
+    padding-top: 50px; /* Espacio para el navbar */
+    height: 100vh; /* Ajustar la altura al 100% del viewport */
+    background-image: url('/public/burbujas.png'); /* Ruta de la imagen de burbujas */
+    background-size: cover; /* Ajustar la imagen para cubrir todo el contenedor */
+    animation: fadeIn 1s ease; /* Animación de fadeIn al cargar la página */
+    overflow: hidden; /* Ocultar las burbujas que se salgan del contenedor */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .content-container {
+    padding: 20px;
+    animation: slideInUp 1s ease; /* Animación de slideInUp al cargar la página */
+  }
+  
+  @keyframes slideInUp {
+    from {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .card {
+    background-color: #fff; /* Fondo blanco para las tarjetas */
+    border: 1px solid #b0c4de; /* Borde azul claro */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* Levantar la tarjeta al pasar el ratón */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Aumentar la sombra al pasar el ratón */
+  }
+  
+  .list-group-item {
+    background-color: #f0f8ff; /* Color de fondo para los elementos de la lista */
+    border-color: #b0c4de; /* Borde azul claro */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+  }
+  
+  .list-group-item:hover {
+    background-color: #d3eafd; /* Cambiar el color de fondo al pasar el ratón */
+  }
+  
+  .navbar {
+    background-color: #007bff; /* Azul primario para el navbar */
+  }
+  
+  .navbar-brand,
+  .navbar-nav .nav-link {
+    color: #000000; /* Texto blanco para los elementos del navbar */
+  }
+  
+  .navbar-brand:hover,
+  .navbar-nav .nav-link:hover {
+    color: #222b24; /* Cambio de color al pasar el ratón */
+  }
+  
+  .btn-outline-success {
+    color: #28a745; /* Texto verde para el botón de búsqueda */
+    border-color: #28a745; /* Borde verde para el botón de búsqueda */
+  }
+  
+  .btn-outline-success:hover {
+    color: #fff; /* Cambio de color al pasar el ratón */
+    background-color: #28a745; /* Fondo verde al pasar el ratón */
+    border-color: #28a745; /* Borde verde al pasar el ratón */
+  }
+  
