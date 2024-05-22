@@ -62,7 +62,7 @@ function Home() {
   console.log('Drivers en el HTML:', drivers); // Verificar si los datos están en el estado
   console.log('Routes en el HTML:', routes); // Verificar si los datos están en el estado
 
- 
+
   return (
     <div className="home-container">
       <Navbar />

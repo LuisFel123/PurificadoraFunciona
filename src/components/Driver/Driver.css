@@ -1,0 +1,57 @@
+.home-container1 {
+    background-color: #f0f8ff;
+    /* Azul claro para el fondo */
+    padding-top: 0px;
+    /* Espacio para el navbar */
+    height: 100vh;
+    /* Ajustar la altura al 100% del viewport */
+    background-image: url('/public/repartidor.jpg');
+    /* Ruta de la imagen de burbujas */
+    background-size: cover;
+    /* Ajustar la imagen para cubrir todo el contenedor */
+    animation: fadeIn 1s ease;
+    /* Animación de fadeIn al cargar la página */
+    overflow: hidden;
+    /* Ocultar las burbujas que se salgan del contenedor */
+
+
+
+}
+
+#tablaCentra {
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+/* resources/js/components/Driver.css */
+.tablaRe {
+    background-color: rgba(255, 255, 255, 0.671);
+    /* Fondo blanco semitransparente */
+    border-collapse: separate;
+    /* Asegurar que el background-color se aplique */
+    text-align: center;
+}
+
+.tablaRe td,
+.tablaRe th {
+    background-color: rgba(255, 255, 255, 0.5);
+    /* Fondo blanco semitransparente para celdas */
+    color: #070000;
+    /* Color del texto negro para contraste */
+}
+
+.botonesc {
+    display: flex;
+    flex-direction: column;
+    /* Apila los elementos verticalmente */
+    align-items: center;
+    /* Centra los elementos horizontalmente */
+}
+
+Button {
+    margin-bottom: 5px; /* Espacio entre botones */
+
+}
+

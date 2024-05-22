@@ -1,6 +1,6 @@
 .home-container {
     background-color: #f0f8ff; /* Azul claro para el fondo */
-    padding-top: 50px; /* Espacio para el navbar */
+    padding-top: 0px; /* Espacio para el navbar */
     height: 100vh; /* Ajustar la altura al 100% del viewport */
     background-image: url('/public/burbujas.png'); /* Ruta de la imagen de burbujas */
     background-size: cover; /* Ajustar la imagen para cubrir todo el contenedor */
@@ -80,4 +80,4 @@
     background-color: #28a745; /* Fondo verde al pasar el ratón */
     border-color: #28a745; /* Borde verde al pasar el ratón */
   }
-  
+

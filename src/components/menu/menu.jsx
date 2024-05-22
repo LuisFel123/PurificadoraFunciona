@@ -1,4 +1,3 @@
-import React from 'react';
 
 function Navbar() {
   return (
@@ -11,13 +10,16 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Inicio</a>
+              <a className="nav-link active" aria-current="page" href="/home">Inicio</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Conductores</a>
+              <a className="nav-link" href="/driver">Conductores</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">Rutas</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Productos</a>
             </li>
           </ul>
           <form className="d-flex">
