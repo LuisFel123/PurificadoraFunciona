@@ -1,11 +1,11 @@
 .home-container {
-    background-color: #f0f8ff; /* Azul claro para el fondo */
-    padding-top: 0px; /* Espacio para el navbar */
-    height: 100vh; /* Ajustar la altura al 100% del viewport */
-    background-image: url('/public/burbujas.png'); /* Ruta de la imagen de burbujas */
-    background-size: cover; /* Ajustar la imagen para cubrir todo el contenedor */
-    animation: fadeIn 1s ease; /* Animación de fadeIn al cargar la página */
-    overflow: hidden; /* Ocultar las burbujas que se salgan del contenedor */
+    background-color: #f0f8ff; 
+    padding-top: 0px; 
+    height: 100vh; 
+    background-image: url('/public/burbujas.png'); 
+    background-size: cover; 
+    animation: fadeIn 1s ease; 
+    overflow: hidden; 
   }
   
   @keyframes fadeIn {
@@ -19,7 +19,8 @@
   
   .content-container {
     padding: 20px;
-    animation: slideInUp 1s ease; /* Animación de slideInUp al cargar la página */
+    animation: slideInUp 1s ease; 
+    height: 100vh;
   }
   
   @keyframes slideInUp {
@@ -33,51 +34,101 @@
     }
   }
   
-  .card {
-    background-color: #fff; /* Fondo blanco para las tarjetas */
-    border: 1px solid #b0c4de; /* Borde azul claro */
-    border-radius: 15px; /* Bordes redondeados */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
-  }
+  
   
   .card:hover {
-    transform: translateY(-5px); /* Levantar la tarjeta al pasar el ratón */
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Aumentar la sombra al pasar el ratón */
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); 
   }
   
   .list-group-item {
-    background-color: #f0f8ff; /* Color de fondo para los elementos de la lista */
-    border-color: #b0c4de; /* Borde azul claro */
-    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+    background-color: #f0f8ff; 
+    border-color: #b0c4de; 
+    transition: background-color 0.3s ease; 
   }
   
   .list-group-item:hover {
-    background-color: #d3eafd; /* Cambiar el color de fondo al pasar el ratón */
+    background-color: #d3eafd; 
   }
   
   .navbar {
-    background-color: #007bff; /* Azul primario para el navbar */
+    background-color: #007bff; 
   }
   
   .navbar-brand,
   .navbar-nav .nav-link {
-    color: #000000; /* Texto blanco para los elementos del navbar */
+    color: #000000; 
   }
   
   .navbar-brand:hover,
   .navbar-nav .nav-link:hover {
-    color: #222b24; /* Cambio de color al pasar el ratón */
+    color: #222b24;
   }
   
   .btn-outline-success {
-    color: #28a745; /* Texto verde para el botón de búsqueda */
-    border-color: #28a745; /* Borde verde para el botón de búsqueda */
+    color: #28a745; 
+    border-color: #28a745; 
   }
   
   .btn-outline-success:hover {
-    color: #fff; /* Cambio de color al pasar el ratón */
-    background-color: #28a745; /* Fondo verde al pasar el ratón */
-    border-color: #28a745; /* Borde verde al pasar el ratón */
+    color: #fff; 
+    background-color: #28a745; 
+    border-color: #28a745; 
   }
 
+  .scroll-container {
+    overflow-y: auto; 
+  }
+ 
+  .accordion-container {
+    background-color: #ffffff3e; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; 
+  }
+  
+  .accordion-item {
+    margin-bottom: 10px; 
+  }
+  .route-container {
+    margin-left: 10px; 
+  }
+  .information-container {
+    margin-right: 10px; 
+  }
+  .accordion-header {
+    background-color: #f0f0f042; 
+    padding: 10px; 
+    border-radius: 5px 5px 0 0; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    cursor: pointer; 
+  }
+  .accordion-header:hover {
+    background-color: #f0f0f042; 
+  }
+  
+  .accordion-body {
+    padding: 10px; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    margin-top: 5px; 
+    max-height: 450px; 
+    overflow-y: auto; 
+  }
+  
+  /* Animación para el despliegue del cuerpo del Accordion */
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      max-height: 0;
+    }
+    to {
+      opacity: 1;
+      max-height: 200px; 
+    }
+  }
+  
+  .accordion-body {
+    animation: slideInDown 0.5s ease; 
+  }
