@@ -1,0 +1,40 @@
+/* Estilos para el body */
+body {
+    background-color: #f0f8ff; 
+  }
+  
+  .agregar-ruta-btn {
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 1000; 
+  }
+  
+  /* Estilos para la tabla */
+  .table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .btn i {
+    margin-right: 5px; 
+  }
+.table-container {
+    margin: 0 auto; 
+    width: 80%; 
+  }
+  
+  .table {
+    border: 1px solid #ddd; 
+  }
+  
+  .table th,
+  .table td {
+    padding: 8px; 
+    text-align: center; 
+  }
+  
+  .btn-agregar-rutas {
+    margin-left: 80%;
+  }
+  

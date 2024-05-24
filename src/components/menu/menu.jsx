@@ -16,7 +16,7 @@ function Navbar() {
               <a className="nav-link" href="/driver">Conductores</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Rutas</a>
+              <a className="nav-link" href="/Rutas">Rutas</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">Productos</a>
