@@ -42,16 +42,31 @@
     /* Color del texto negro para contraste */
 }
 
-.botonesc {
-    display: flex;
-    flex-direction: column;
-    /* Apila los elementos verticalmente */
-    align-items: center;
-    /* Centra los elementos horizontalmente */
-}
+
+
 
 Button {
-    margin-bottom: 5px; /* Espacio entre botones */
+    margin-bottom: 5px;
+    /* Espacio entre botones */
+    margin-right: 10px;
 
 }
+
+
+#insert {
+    margin-top: 15px;
+    margin-bottom: 1px;
+    margin-left: 20px;
+}
+
+.custom-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Cambia la opacidad aquí */
+}
+
+.custom-backdropdos {
+    background-color: rgba(0, 0, 0, 2.2);
+    /* Cambia la opacidad aquí */
+}
+
 

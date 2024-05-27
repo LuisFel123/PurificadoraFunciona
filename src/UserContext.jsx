@@ -17,10 +17,10 @@ export const UserProvider = ({ children }) => {
                 'http://127.0.0.1:8000/api/validar',
                 { email, password },
                 //{
-                      //Authorization: `Bearer ${token}`
-                    //}
+                //Authorization: `Bearer ${token}`
+                //}
                 //} //  headers: {
-                   
+
             );
             try {
                 setUser(response.data.user);
@@ -58,12 +58,12 @@ export const UserProvider = ({ children }) => {
     };
 
     UserProvider.propTypes = {
-        children: PropTypes.node 
+        children: PropTypes.node
     };
 
     return (
         <UserContext.Provider value={{ user, loginUser, logoutUser, registerUser, errorMessage }}>
-                        {children}
+            {children}
         </UserContext.Provider>
     );
 
