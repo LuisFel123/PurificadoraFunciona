@@ -26,7 +26,7 @@ function Product() {
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
             // Realizar la solicitud GET a la API para obtener los conductores
-            axios.get('http://127.0.0.1:8000/api/carboy')
+            axios.get('http://127.0.0.1:8000/api/getType')
                 .then(response => {
                     // Actualizar el estado con los datos de los conductores recibidos
                     setDrivers(response.data);
@@ -58,6 +58,14 @@ function Product() {
 
                                     <Card.Text>
                                         Color: {driver.color}
+                                    </Card.Text>
+
+                                    <Card.Text>
+                                        Capacidad: {driver.carboy_types.capacity}
+                                    </Card.Text>
+
+                                    <Card.Text>
+                                        Precio: {driver.carboy_types.price}
                                     </Card.Text>
 
                                     <Button variant="primary">Go somewhere</Button>
