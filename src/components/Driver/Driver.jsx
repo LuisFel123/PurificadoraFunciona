@@ -33,7 +33,7 @@ export function Driver() {
 
     const handleNameChangeU = (e) => setNameU(e.target.value);
     const handleLicenseChangeU = (e) => setLicenseU(e.target.value);
-    
+
 
 
 
@@ -199,8 +199,6 @@ export function Driver() {
 
         <div className="home-container1">
             <Navbar />
-
-
             <Button variant="success" id="insert" onClick={handleShowI}>Insertar conductor</Button>{' '}
 
             <Modal show={showI} onHide={handleCloseInsert} backdropClassName="custom-backdropdos">

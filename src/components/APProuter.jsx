@@ -3,6 +3,7 @@ import Login from './Login/Login'
 import Home from './home/home';
 import Driver from './Driver/Driver';
 import Rutas from './Rutas/Rutas'
+import Product from './Product/Product';
 function APProuter() {
   return (
     
@@ -13,6 +14,9 @@ function APProuter() {
         <Route path="/home" element={<Home/>} />
         <Route path="/driver" element={<Driver/>} />
         <Route path="/Rutas" element={<Rutas/>} />
+        <Route path="/Product" element={<Product/>} />
+
+
 
       </Routes>
     </Router>

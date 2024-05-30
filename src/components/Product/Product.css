@@ -1,0 +1,35 @@
+
+.productos{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-right: 50px;
+    margin-left: 60px;
+    margin-bottom: 30px;
+    /* Para centrar el texto horizontalmente */
+}
+
+.imagen {
+    width: 50%;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.containerDos {
+    background-color: #f0f8ff;
+    /* Azul claro para el fondo */
+    padding-top: 0px;
+    /* Espacio para el navbar */
+    background-image: url('/public/fondoP.jpg');
+    /* Ruta de la imagen de burbujas */
+    background-size: cover;
+    /* Ajustar la imagen para cubrir todo el contenedor */
+    animation: fadeIn 1s ease;
+    /* Animación de fadeIn al cargar la página */
+    overflow: hidden;
+    /* Ocultar las burbujas que se salgan del contenedor */
+}
+
+

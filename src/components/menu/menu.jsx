@@ -19,7 +19,7 @@ function Navbar() {
               <a className="nav-link" href="/Rutas">Rutas</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Productos</a>
+              <a className="nav-link" href="/Product">Productos</a>
             </li>
           </ul>
           <form className="d-flex">
