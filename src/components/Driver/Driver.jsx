@@ -283,7 +283,7 @@ export function Driver() {
 
 
 
-
+                                        {/*Actualizar el producto */}
 
                                         <Button variant="warning" onClick={() => handleShowUpdate(driver.id, driver.name, driver.license)} >
                                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000000" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -308,6 +308,7 @@ export function Driver() {
                                                             autoFocus
                                                             value={nameU}
                                                             onChange={handleNameChangeU}
+                                                            required
 
 
                                                         />
@@ -319,6 +320,7 @@ export function Driver() {
                                                             placeholder="Licencia"
                                                             value={licenseU}
                                                             onChange={handleLicenseChangeU}
+                                                            required
 
                                                         />
                                                     </Form.Group>
