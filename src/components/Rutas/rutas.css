@@ -37,4 +37,35 @@ body {
   .btn-agregar-rutas {
     margin-left: 80%;
   }
-  
+  /* Estilos CSS para la animación del mensaje */
+.message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  animation: showMessage 0.5s ease-out forwards; /* Duración y tipo de animación */
+}
+
+.message.success {
+  color: green;
+}
+
+.message.error {
+  color: red;
+}
+
+/* Definición de la animación showMessage */
+@keyframes showMessage {
+  from {
+    opacity: 0; /* Mensaje invisible al inicio */
+    transform: translate(-50%, 50%); /* Desplazamiento hacia abajo */
+  }
+  to {
+    opacity: 1; /* Mensaje visible al final */
+    transform: translate(-50%, -50%); /* Regresar al centro de la pantalla */
+  }
+}
