@@ -5,6 +5,7 @@ import Navbar from "../menu/menu";
 import './home.css'; // Importa el archivo de estilos CSS
 import MapWithDirections from '../maps/MapWithDirections';
 import { LoadScript } from '@react-google-maps/api'; // Importa LoadScript
+import Pagination from 'react-bootstrap/Pagination';
 
 function Home() {
   const [drivers, setDrivers] = useState([]);
@@ -12,6 +13,10 @@ function Home() {
   const [expandedDriver, setExpandedDriver] = useState(null);
   const [expandedRoute, setExpandedRoute] = useState(null);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false); // Estado para controlar si el script ya se ha cargado
+  const [driverPage, setDriverPage] = useState(1);
+  const [routePage, setRoutePage] = useState(1);
+  const driversPerPage = 4;
+  const routesPerPage = 4;
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -53,6 +58,16 @@ function Home() {
     fetchRoutes();
   }, []);
 
+  // Función para manejar el cambio de página de los conductores
+  const handleDriverPageChange = (event, pageNumber) => {
+    setDriverPage(pageNumber);
+  };
+
+  // Función para manejar el cambio de página de las rutas
+  const handleRoutePageChange = (event, pageNumber) => {
+    setRoutePage(pageNumber);
+  };
+
   return (
     <div className="home-container">
       <Navbar />
@@ -66,29 +81,37 @@ function Home() {
           <div className="col-md-5 accordion-container information-container">
             <h2>Información sobre Carros</h2>
             <Accordion defaultActiveKey="0">
-  {drivers.map(driver => (
-    <Accordion.Item eventKey={driver.id} key={driver.id}>
-      <Accordion.Header>
-        <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '5px', textAlign: 'center' }}>Modelo: {driver.model}</p>
-      </Accordion.Header>
-      <Accordion.Body>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginBottom: '20px' }}>
-          <div style={{ marginBottom: '10px', textAlign: 'center' }}>
-            <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '5px' }}>ID: {driver.id}</p>
-            <p style={{ fontSize: '16px', marginBottom: '5px' }}>Capacidad: {driver.capacity}</p>
-          </div>
-          <img src={driver.img_url} alt={driver.model} style={{ width: '200px', height: '200px', objectFit: 'cover', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', transition: 'transform 0.3s ease-in-out' }} />
-        </div>
-      </Accordion.Body>
-    </Accordion.Item>
-  ))}
-</Accordion>
+              {drivers.slice((driverPage - 1) * driversPerPage, driverPage * driversPerPage).map(driver => (
+                <Accordion.Item eventKey={driver.id} key={driver.id}>
+                  <Accordion.Header>
+                    <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '5px', textAlign: 'center' }}>Modelo: {driver.model}</p>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginBottom: '20px' }}>
+                      <div style={{ marginBottom: '10px', textAlign: 'center' }}>
+                        <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '5px' }}>ID: {driver.id}</p>
+                        <p style={{ fontSize: '16px', marginBottom: '5px' }}>Capacidad: {driver.capacity}</p>
+                      </div>
+                      <img src={driver.img_url} alt={driver.model} style={{ width: '200px', height: '200px', objectFit: 'cover', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', transition: 'transform 0.3s ease-in-out' }} />
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              ))}
+            </Accordion>
+            {/* Paginación de conductores */}
+            <Pagination>
+              {Array.from({ length: Math.ceil(drivers.length / driversPerPage) }, (_, index) => (
+                <Pagination.Item key={index + 1} active={index + 1 === driverPage} onClick={(event) => handleDriverPageChange(event, index + 1)}>
+                  {index + 1}
+                </Pagination.Item>
+              ))}
+            </Pagination>
           </div>
           <div className="col-md-5 accordion-container route-container">
             <h2>Lista de Rutas</h2>
             <Accordion defaultActiveKey="0">
-              {routes.map(route => (
-                <Accordion.Item eventKey={route.id}>
+              {routes.slice((routePage - 1) * routesPerPage, routePage * routesPerPage).map(route => (
+                <Accordion.Item eventKey={route.id} key={route.id}>
                   <Accordion.Header>
                     {route.route_name}
                   </Accordion.Header>
@@ -109,6 +132,14 @@ function Home() {
                 </Accordion.Item>
               ))}
             </Accordion>
+            {/* Paginación de rutas */}
+            <Pagination>
+              {Array.from({ length: Math.ceil(routes.length / routesPerPage) }, (_, index) => (
+                <Pagination.Item key={index + 1} active={index + 1 === routePage} onClick={(event) => handleRoutePageChange(event, index + 1)}>
+                  {index + 1}
+                </Pagination.Item>
+              ))}
+            </Pagination>
           </div>
         </div>
         <br></br>
