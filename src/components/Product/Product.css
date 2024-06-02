@@ -38,3 +38,13 @@
     margin-left: 20px;
 }
 
+.modalM {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Cambia la opacidad aquí */
+}
+
+.custom-backdropdos {
+    background-color: rgba(0, 0, 0, 2.2);
+    /* Cambia la opacidad aquí */
+}
+
