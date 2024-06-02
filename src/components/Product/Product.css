@@ -32,4 +32,9 @@
     /* Ocultar las burbujas que se salgan del contenedor */
 }
 
+#insert1 {
+    margin-top: 15px;
+    margin-bottom: 1px;
+    margin-left: 20px;
+}
 
