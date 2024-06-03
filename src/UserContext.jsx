@@ -33,11 +33,11 @@ export const UserProvider = ({ children }) => {
         }
     };
 
-    const registerUser = async (name, email, password) => {
+    const registerUser = async (name, email, password,clave) => {
         try {
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/userregister',
-                { name, email, password }
+                { name, email, password,clave }
             );
             setUser(response.data.user);
             return response;

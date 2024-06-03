@@ -8,6 +8,7 @@
     margin-left: 60px;
     margin-bottom: 30px;
     /* Para centrar el texto horizontalmente */
+    
 }
 
 .imagen {
@@ -48,3 +49,65 @@
     /* Cambia la opacidad aquí */
 }
 
+.productos {
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.7); /* Blanco transparente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+.imagen {
+    margin-top: 5%;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.8); /* Borde blanco translúcido */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para un efecto más profesional */
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.imagen:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+/* Estilos para el contenedor de la paginación */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Estilos para los botones de la paginación */
+.pagination-button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para el botón activo */
+.pagination-button.active {
+    background-color: #0056b3;
+}
+
+/* Estilos para el botón anterior y siguiente */
+.pagination-button.prev-next {
+    font-weight: bold;
+}
+
+/* Estilos para el número de página */
+.pagination-page {
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para el número de página activo */
+.pagination-page.active {
+    background-color: #0056b3;
+    color: #ffffff;
+}
