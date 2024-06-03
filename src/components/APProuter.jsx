@@ -4,6 +4,7 @@ import Home from './home/home';
 import Driver from './Driver/Driver';
 import Rutas from './Rutas/Rutas'
 import Product from './Product/Product';
+import CarCrud from "./cars/cars"
 function APProuter() {
   return (
     
@@ -15,6 +16,7 @@ function APProuter() {
         <Route path="/driver" element={<Driver/>} />
         <Route path="/Rutas" element={<Rutas/>} />
         <Route path="/Product" element={<Product/>} />
+        <Route path="/cars" element={<CarCrud/>} />
 
 
 

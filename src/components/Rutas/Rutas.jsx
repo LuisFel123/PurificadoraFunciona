@@ -7,6 +7,8 @@ import './rutas.css'; // Importa el archivo de estilos CSS
 import { LoadScript } from '@react-google-maps/api';
 import  Map  from '../maps/Map';
 import axios from 'axios'; // Importa Axios para realizar solicitudes HTTP
+import TrafficInfo from '../TrafficInfo/TrafficInfo'; // Asegúrate de importar el componente TrafficInfo
+
 function Rutas() {
   const [showModal, setShowModal] = useState(false);
   const [rutaSeleccionada, setRutaSeleccionada] = useState(null);
@@ -24,13 +26,14 @@ function Rutas() {
    const [showEditModal, setShowEditModal] = useState(false); // Estado para mostrar el modal de edición
   const [rutaEditada, setRutaEditada] = useState(null); // Estado para almacenar los datos de la ruta editada
   const [nombreRutaEditado, setNombreRutaEditado] = useState(''); // Estado para almacenar el nuevo nombre de la ruta editada
- 
+  const userRole = localStorage.getItem('role');
+  
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       return;
     }
-
+    
     const fetchRutas = async () => {
       try {
         const response = await fetch('http://127.0.0.1:8000/api/routes', {
@@ -200,7 +203,7 @@ const handleConfirmDelete = async () => {
           </div>
           <Button variant="primary" onClick={handleAgregarOrigen}>Agregar Origen</Button>
           <Button variant="primary" onClick={handleAgregarDestino}>Agregar Destino</Button>
-
+         
           {/* Mostrar coordenadas seleccionadas */}
           {coordenadas && (
             <div>
@@ -237,7 +240,15 @@ const handleConfirmDelete = async () => {
         <Modal.Body>
           {rutaSeleccionada && (
             <>
+            <TrafficInfo
+          
+          originLat={rutaSeleccionada.origin_lat}
+          originLng={rutaSeleccionada.origin_lng}
+          destinationLat={rutaSeleccionada.destination_lat}
+          destinationLng={rutaSeleccionada.destination_lng}
+        />
               {isScriptLoaded && ( // Renderizar solo si el script se ha cargado
+              
                 <MapWithDirections
                   key={mapKey} // Usar la clave para forzar el reinicio del componente
                   origin={{
@@ -385,12 +396,16 @@ const handleConfirmDelete = async () => {
                   <button className="btn btn-info me-2" onClick={() => handleVerRuta(ruta)}>
                     <i className="fas fa-eye"></i> Ver
                   </button>
-                  <button className="btn btn-warning me-2" onClick={() => { setRutaSeleccionada(ruta); setNombreRutaEditado(ruta.route_name); setShowEditModal(true); }}>
-                    <i className="fas fa-edit"></i> Editar
-                  </button>
-                  <button className="btn btn-danger" onClick={() => { setRutaSeleccionada(ruta); setShowDeleteModal(true); }}>
-                    <i className="fas fa-trash-alt"></i> Eliminar
-                  </button>
+                  {userRole !== 'conductor' && (
+        <>
+          <button className="btn btn-warning me-2" onClick={() => { setRutaSeleccionada(ruta); setNombreRutaEditado(ruta.route_name); setShowEditModal(true); }}>
+            <i className="fas fa-edit"></i> Editar
+          </button>
+          <button className="btn btn-danger" onClick={() => { setRutaSeleccionada(ruta); setShowDeleteModal(true); }}>
+            <i className="fas fa-trash-alt"></i> Eliminar
+          </button>
+        </>
+      )}
                 </td>
               </tr>
             ))}

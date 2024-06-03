@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
+import Pagination from 'react-bootstrap/Pagination';
 import Navbar from "../menu/menu";
 import './home.css'; // Importa el archivo de estilos CSS
 import MapWithDirections from '../maps/MapWithDirections';
-import { LoadScript } from '@react-google-maps/api'; // Importa LoadScript
-import Pagination from 'react-bootstrap/Pagination';
+import TrafficInfo from '../TrafficInfo/TrafficInfo'; // Asegúrate de importar el componente TrafficInfo
+import { LoadScript } from '@react-google-maps/api';
 
 function Home() {
   const [drivers, setDrivers] = useState([]);
   const [routes, setRoutes] = useState([]);
-  const [expandedDriver, setExpandedDriver] = useState(null);
-  const [expandedRoute, setExpandedRoute] = useState(null);
-  const [isScriptLoaded, setIsScriptLoaded] = useState(false); // Estado para controlar si el script ya se ha cargado
+  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
   const [driverPage, setDriverPage] = useState(1);
   const [routePage, setRoutePage] = useState(1);
   const driversPerPage = 4;
@@ -94,6 +92,7 @@ function Home() {
                       </div>
                       <img src={driver.img_url} alt={driver.model} style={{ width: '200px', height: '200px', objectFit: 'cover', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', transition: 'transform 0.3s ease-in-out' }} />
                     </div>
+                   
                   </Accordion.Body>
                 </Accordion.Item>
               ))}
@@ -116,6 +115,12 @@ function Home() {
                     {route.route_name}
                   </Accordion.Header>
                   <Accordion.Body>
+                  <TrafficInfo
+                      originLat={route.origin_lat}
+                      originLng={route.origin_lng}
+                      destinationLat={route.destination_lat}
+                      destinationLng={route.destination_lng}
+                    />
                     {isScriptLoaded && ( // Renderizar solo si el script se ha cargado
                       <MapWithDirections
                         origin={{
@@ -128,6 +133,7 @@ function Home() {
                         }}
                       />
                     )}
+                     
                   </Accordion.Body>
                 </Accordion.Item>
               ))}

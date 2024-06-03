@@ -7,11 +7,14 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const { loginUser, registerUser,errorMessage } = useContext(UserContext);
   const [email, setEmail] = useState("");
+  const [Clave, setClave] = useState("");
   const [password, setPassword] = useState("");
   const [emailEmpty, setEmailEmpty] = useState(false);
   const [passwordEmpty, setPasswordEmpty] = useState(false);
   const [name, setName] = useState("");
   const [nameEmpty, setnNameEmpty] = useState(false);
+  const [ClaveEmpty, setClaveEmpty] = useState(false);
+
   const [show, setShow] = useState(false);
   const [showDos, setShowDos] = useState(false);
   const [showTres, setShowTres] = useState(false);
@@ -63,9 +66,12 @@ function Login() {
       try {
         const success = await loginUser(email, password);
         if (success) {
+          console.log("hoas",success)
           const token2 = success.data.token;
           const correo = success.data.email;
+          const role = success.data.role;
           localStorage.setItem("token", token2);
+          localStorage.setItem("role", role);         
           setShow(true);
           setIsLoggedIn(true);
           navigacion("/home");
@@ -89,10 +95,12 @@ function Login() {
 
     if (name.trim() === "") setnNameEmpty(true);
     else setnNameEmpty(false);
-
-    if (email.trim() !== "" && password.trim() !== "" && name.trim() !== "") {
+    if (Clave.trim() === "") setClaveEmpty(true);
+    else setClaveEmpty(false);
+    
+    if (email.trim() !== "" && password.trim() !== "" && name.trim() !== "" && Clave.trim() !== "") {
       try {
-        const success = await registerUser(name, email, password);
+                const success = await registerUser(name, email, password,Clave);
         if (success) {
           setShowTres(false);
           setShowTarje(true);
@@ -153,7 +161,7 @@ function Login() {
                       Por favor, ingrese su correo electrónico.
                     </p>
                   )}
-
+            
                   <div className="mb-3 d-flex align-items-center">
                     <label htmlFor="password" className="custom-label me-3">
                       Contraseña
@@ -206,11 +214,7 @@ function Login() {
               <p onClick={() => setShowTres(true)}>
                 ¿Nuevo aquí? Regístrate para obtener una cuenta.
               </p>
-              <div className="mt-3">
-                <a href="#" className="custom-link">
-                  ¿Olvidaste tu contraseña?
-                </a>
-              </div>
+              
             </div>
           </Col>
         </Row>
@@ -256,6 +260,21 @@ function Login() {
               <small className="text-muted">
                 Nunca compartiremos su correo electrónico con nadie más.
               </small>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="Clave">Clave</label>
+              <input
+                type="password"
+                className={`form-control ${ClaveEmpty ? "empty-input" : ""}`}
+                id="Clave"
+                placeholder="Ingres la clave de registro"
+                value={Clave}
+                onChange={(e) => setClave(e.target.value)}
+                required
+              />
+              {nameEmpty && (
+                <p className="error-message">Por favor, ingrese su clave.</p>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="formBasicPassword">Contraseña</label>

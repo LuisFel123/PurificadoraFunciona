@@ -1,5 +1,9 @@
+import React from 'react';
 
 function Navbar() {
+  // Obtener el rol del usuario del localStorage
+  const userRole = localStorage.getItem('role');
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -12,15 +16,34 @@ function Navbar() {
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="/home">Inicio</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/driver">Conductores</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/Rutas">Rutas</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/Product">Productos</a>
-            </li>
+            {/* Mostrar opciones para el rol 'admin' */}
+            {userRole === 'admin' && (
+              <>
+                <li className="nav-item">
+                  <a className="nav-link" href="/driver">Conductores</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/Rutas">Rutas</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/Product">Productos</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/cars">carros</a>
+                </li>
+              </>
+            )}
+            {/* Mostrar opciones para el rol 'conductor' */}
+            {userRole === 'conductor' && (
+              <>
+             <li className="nav-item">
+                <a className="nav-link" href="/Rutas">Rutas</a>
+              </li>
+               <li className="nav-item">
+               <a className="nav-link" href="/cars">carros</a>
+             </li>
+             </>
+            )}
           </ul>
           <form className="d-flex">
             <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" />

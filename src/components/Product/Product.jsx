@@ -9,6 +9,7 @@ import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
+import ReactPaginate from 'react-paginate';
 
 
 
@@ -27,7 +28,9 @@ export function Product() {
     const [idC, setIdC] = useState('');
     const handleClose = () => setShow(false);
     const handleCloseActu = () => setShowA(false);
-
+    const [pageNumber, setPageNumber] = useState(0);
+    const driversPerPage = 6;
+    const pagesVisited = pageNumber * driversPerPage;
 
 
     const [estadoU, setEstadoU] = useState('');
@@ -114,7 +117,12 @@ export function Product() {
         }
     };
 
+// Definir la variable pageCount
+const pageCount = Math.ceil(drivers.length / driversPerPage);
 
+const changePage = ({ selected }) => {
+    setPageNumber(selected);
+};
 
     //insertar un producto
     const handleSubmit = async () => {
@@ -381,9 +389,11 @@ export function Product() {
 
 
                 <Row>
-                    {drivers.map(driver => (
+                    {drivers.slice(pagesVisited, pagesVisited + driversPerPage)
+                        .map(driver => (
                         <Col md={4} key={driver.id}>
                             <Card style={{ width: '18rem' }} className="productos">
+                                
                                 <Card.Img variant="top" src="public/botellon.png" className="imagen" />
                                 <Card.Body>
                                     <Card.Text>
@@ -549,6 +559,17 @@ export function Product() {
                         </Col>
                     ))}
                 </Row>
+                <ReactPaginate
+    previousLabel={'Anterior'}
+    nextLabel={'Siguiente'}
+    pageCount={pageCount}
+    onPageChange={changePage}
+    containerClassName={'pagination-container'}
+    previousLinkClassName={'pagination-button prev-next'}
+    nextLinkClassName={'pagination-button prev-next'}
+    pageClassName={'pagination-page'}
+    activeClassName={'active'}
+/>
 
             </div>
         </>
