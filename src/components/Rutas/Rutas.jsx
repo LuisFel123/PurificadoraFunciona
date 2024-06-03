@@ -8,6 +8,7 @@ import { LoadScript } from '@react-google-maps/api';
 import  Map  from '../maps/Map';
 import axios from 'axios'; // Importa Axios para realizar solicitudes HTTP
 import TrafficInfo from '../TrafficInfo/TrafficInfo'; // Asegúrate de importar el componente TrafficInfo
+import WeatherInfo from '../WeatherInfo/WeatherInfo'; // Asegúrate de importar el componente WeatherInfo
 
 function Rutas() {
   const [showModal, setShowModal] = useState(false);
@@ -27,7 +28,7 @@ function Rutas() {
   const [rutaEditada, setRutaEditada] = useState(null); // Estado para almacenar los datos de la ruta editada
   const [nombreRutaEditado, setNombreRutaEditado] = useState(''); // Estado para almacenar el nuevo nombre de la ruta editada
   const userRole = localStorage.getItem('role');
-  
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -240,13 +241,21 @@ const handleConfirmDelete = async () => {
         <Modal.Body>
           {rutaSeleccionada && (
             <>
-            <TrafficInfo
-          
-          originLat={rutaSeleccionada.origin_lat}
-          originLng={rutaSeleccionada.origin_lng}
-          destinationLat={rutaSeleccionada.destination_lat}
-          destinationLng={rutaSeleccionada.destination_lng}
-        />
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+  <div className="traffic-weather-container">
+    <TrafficInfo
+      originLat={rutaSeleccionada.origin_lat}
+      originLng={rutaSeleccionada.origin_lng}
+      destinationLat={rutaSeleccionada.destination_lat}
+      destinationLng={rutaSeleccionada.destination_lng}
+    />
+    <WeatherInfo
+      lat={rutaSeleccionada.origin_lat}
+      lng={rutaSeleccionada.origin_lng}
+    />
+  </div>
+</div>
+
               {isScriptLoaded && ( // Renderizar solo si el script se ha cargado
               
                 <MapWithDirections
@@ -384,6 +393,8 @@ const handleConfirmDelete = async () => {
             <tr>
               <th>ID</th>
               <th>Nombre</th>
+              <th>trafico</th>
+              <th>clima </th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -392,6 +403,18 @@ const handleConfirmDelete = async () => {
               <tr key={ruta.id}>
                 <td>{ruta.id}</td>
                 <td>{ruta.route_name}</td>
+                <td>
+                <TrafficInfo
+        originLat={ruta.origin_lat}
+        originLng={ruta.origin_lng}
+        destinationLat={ruta.destination_lat}
+        destinationLng={ruta.destination_lng}
+      />
+    </td>
+    <td>  <WeatherInfo
+                        lat={ruta.origin_lat}
+                        lng={ruta.origin_lng}
+                      /></td>
                 <td>
                   <button className="btn btn-info me-2" onClick={() => handleVerRuta(ruta)}>
                     <i className="fas fa-eye"></i> Ver

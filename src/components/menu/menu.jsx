@@ -1,9 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
+  const navigate = useNavigate();
   // Obtener el rol del usuario del localStorage
   const userRole = localStorage.getItem('role');
 
+  const handleLogout = () => {
+    // Eliminar el token del localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    // Redirigir al usuario a la página de login
+    navigate('/');
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -45,10 +54,9 @@ function Navbar() {
              </>
             )}
           </ul>
-          <form className="d-flex">
-            <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" />
-            <button className="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
+          <button className="btn btn-outline-danger" onClick={handleLogout}>
+            Cerrar Sesión
+          </button>
         </div>
       </div>
     </nav>

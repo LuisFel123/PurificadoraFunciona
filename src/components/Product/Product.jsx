@@ -38,7 +38,7 @@ export function Product() {
     const [capacidadU, setCapacidadU] = useState('');
     const [precioU, setPrecioU] = useState('');
     const [colorU, setColorU] = useState('');
-
+    const [img_url, setimg_url] = useState('');
 
 
 
@@ -51,7 +51,16 @@ export function Product() {
 
 
 
-
+    const handleEditImageUpload = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setimg_url(reader.result);
+        };
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      };
 
     const handleShowI = () => {
         setShowI(true);
@@ -109,6 +118,7 @@ export function Product() {
 
             console.log('ID del tipo de producto insertado:', carboyTypeId);
             setShowA(false);
+            
             return carboyTypeId;
 
             //window.location.reload(); // Recargar la página actual
@@ -135,7 +145,7 @@ const changePage = ({ selected }) => {
                 color: colorU,
                 cantidad: parseFloat(cantidadU),
                 carboyType_id: carboyTypeId,
-
+                img:img_url
             };
             await axios.post(`http://127.0.0.1:8000/api/createCarboy`, updatedDriver);
             console.log('Producto insertado con éxito');
@@ -303,7 +313,7 @@ const changePage = ({ selected }) => {
                 {/*Modal para insertar los productos*/}
                 <Modal show={showI} onHide={handleCloseInsert} backdropClassName="custom-backdropdos">
                     <Modal.Header closeButton>
-                        <Modal.Title>Insertar conductor</Modal.Title>
+                        <Modal.Title>Insertar producto</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
 
@@ -375,6 +385,15 @@ const changePage = ({ selected }) => {
 
                                 />
                             </Form.Group>
+                            <Form.Group controlId="editImgUrl">
+              <Form.Label>Subir imagen</Form.Label>
+              <Form.Control
+                type="file"
+                name="img_url"
+                onChange={handleEditImageUpload}
+                accept="image/*"
+              />
+            </Form.Group>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
@@ -394,7 +413,7 @@ const changePage = ({ selected }) => {
                         <Col md={4} key={driver.id}>
                             <Card style={{ width: '18rem' }} className="productos">
                                 
-                                <Card.Img variant="top" src="public/botellon.png" className="imagen" />
+                                <Card.Img variant="top" src={driver.img} className="imagen" />
                                 <Card.Body>
                                     <Card.Text>
                                         Id: {driver.id}
@@ -433,7 +452,7 @@ const changePage = ({ selected }) => {
                                     </Button>{' '}
                                     <Modal show={showA} onHide={handleCloseActu} backdropClassName="custom-backdropdos">
                                         <Modal.Header closeButton>
-                                            <Modal.Title>Insertar conductor</Modal.Title>
+                                            <Modal.Title>Editar producto</Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
 
@@ -505,6 +524,7 @@ const changePage = ({ selected }) => {
 
                                                     />
                                                 </Form.Group>
+                                                
                                             </Form>
                                         </Modal.Body>
                                         <Modal.Footer>

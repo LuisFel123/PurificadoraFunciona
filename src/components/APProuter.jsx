@@ -1,25 +1,25 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './Login/Login'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Login from './Login/Login';
 import Home from './home/home';
 import Driver from './Driver/Driver';
-import Rutas from './Rutas/Rutas'
+import Rutas from './Rutas/Rutas';
 import Product from './Product/Product';
-import CarCrud from "./cars/cars"
-function APProuter() {
-  return (
-    
+import CarCrud from './cars/cars';
+import ProtectedRoute from './ProtectedRoute';
 
+function APProuter() {
+  const token = localStorage.getItem('token');
+
+  return (
     <Router>
       <Routes>
-        <Route  path="/" element={<Login/>} />
-        <Route path="/home" element={<Home/>} />
-        <Route path="/driver" element={<Driver/>} />
-        <Route path="/Rutas" element={<Rutas/>} />
-        <Route path="/Product" element={<Product/>} />
-        <Route path="/cars" element={<CarCrud/>} />
-
-
-
+        <Route path="/" element={token ? <Navigate to="/home" /> : <Login />} />
+        <Route path="/home" element={<ProtectedRoute element={<Home />} redirectTo="/" />} />
+        <Route path="/driver" element={<ProtectedRoute element={<Driver />} redirectTo="/" />} />
+        <Route path="/Rutas" element={<ProtectedRoute element={<Rutas />} redirectTo="/" />} />
+        <Route path="/Product" element={<ProtectedRoute element={<Product />} redirectTo="/" />} />
+        <Route path="/cars" element={<ProtectedRoute element={<CarCrud />} redirectTo="/" />} />
       </Routes>
     </Router>
   );

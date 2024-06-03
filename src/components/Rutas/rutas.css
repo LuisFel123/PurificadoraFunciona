@@ -69,3 +69,13 @@ body {
     transform: translate(-50%, -50%); /* Regresar al centro de la pantalla */
   }
 }
+.traffic-weather-container {
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos */
+}
+
+.traffic-info,
+.weather-info {
+  flex: 1; /* Hace que cada elemento ocupe el mismo espacio */
+  margin: 0 10px; /* Margen entre los elementos */
+}

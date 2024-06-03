@@ -6,7 +6,7 @@ import './home.css'; // Importa el archivo de estilos CSS
 import MapWithDirections from '../maps/MapWithDirections';
 import TrafficInfo from '../TrafficInfo/TrafficInfo'; // Asegúrate de importar el componente TrafficInfo
 import { LoadScript } from '@react-google-maps/api';
-
+import WeatherInfo from '../WeatherInfo/WeatherInfo'; // Asegúrate de importar el componente WeatherInfo
 function Home() {
   const [drivers, setDrivers] = useState([]);
   const [routes, setRoutes] = useState([]);
@@ -111,16 +111,25 @@ function Home() {
             <Accordion defaultActiveKey="0">
               {routes.slice((routePage - 1) * routesPerPage, routePage * routesPerPage).map(route => (
                 <Accordion.Item eventKey={route.id} key={route.id}>
-                  <Accordion.Header>
-                    {route.route_name}
-                  </Accordion.Header>
+                  <Accordion.Header style={{ display: 'flex', alignItems: 'center' }}>
+  {route.route_name}
+  <div style={{ marginLeft: 'auto' }}> {/* Establece TrafficInfo a la derecha */}
+    <TrafficInfo
+      originLat={route.origin_lat}
+      originLng={route.origin_lng}
+      destinationLat={route.destination_lat}
+      destinationLng={route.destination_lng}
+    />
+  </div>
+</Accordion.Header>
+
                   <Accordion.Body>
-                  <TrafficInfo
-                      originLat={route.origin_lat}
-                      originLng={route.origin_lng}
-                      destinationLat={route.destination_lat}
-                      destinationLng={route.destination_lng}
-                    />
+                
+                    
+                      <WeatherInfo
+                        lat={parseFloat(route.origin_lat)}
+                        lng={parseFloat(route.origin_lng)}
+                      />
                     {isScriptLoaded && ( // Renderizar solo si el script se ha cargado
                       <MapWithDirections
                         origin={{

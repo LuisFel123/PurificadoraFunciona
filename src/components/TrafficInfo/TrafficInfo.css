@@ -1,0 +1,20 @@
+.traffic-info-container {
+    display: flex;
+    align-items: center; /* Para alinear verticalmente en el centro */
+  }
+  
+  .traffic-info {
+    display: flex;
+    align-items: center; /* Para alinear verticalmente en el centro */
+  }
+  
+  .traffic-icon {
+    margin-right: 5px; /* Espacio entre el ícono y el texto */
+  }
+  
+  .traffic-text {
+    font-size: 18px; /* Tamaño del texto */
+    font-weight: bold; /* Negrita */
+    color: #FF5733; /* Color del texto */
+  }
+  
