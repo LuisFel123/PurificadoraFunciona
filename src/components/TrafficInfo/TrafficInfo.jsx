@@ -47,11 +47,16 @@ const TrafficInfo = ({ originLat, originLng, destinationLat, destinationLng }) =
   }, [originLat, originLng, destinationLat, destinationLng]);
 
   return (
-    <div>
+    <div className="traffic-info-container">
       {trafficDuration ? (
-        <div>Traffic Duration: {trafficDuration}</div>
+        <div className="traffic-info">
+          
+          <div className="traffic-text"><i className="fas fa-car-side traffic-icon"></i> Tiempo de recorrido: {trafficDuration}</div>
+        </div>
       ) : (
-        <div>{error || 'Loading traffic info...'}</div>
+        <div className="traffic-loading">
+          {error || 'Cargando información del tráfico...'}
+        </div>
       )}
     </div>
   );
