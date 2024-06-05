@@ -7,7 +7,7 @@ import Rutas from './Rutas/Rutas';
 import Product from './Product/Product';
 import CarCrud from './cars/cars';
 import ProtectedRoute from './ProtectedRoute';
-
+import Pedidos from './pedidos/Pedidos'
 function APProuter() {
   const token = localStorage.getItem('token');
 
@@ -20,6 +20,8 @@ function APProuter() {
         <Route path="/Rutas" element={<ProtectedRoute element={<Rutas />} redirectTo="/" />} />
         <Route path="/Product" element={<ProtectedRoute element={<Product />} redirectTo="/" />} />
         <Route path="/cars" element={<ProtectedRoute element={<CarCrud />} redirectTo="/" />} />
+        <Route path="/pedidos" element={<ProtectedRoute element={<Pedidos />} redirectTo="/" />} />
+
       </Routes>
     </Router>
   );
