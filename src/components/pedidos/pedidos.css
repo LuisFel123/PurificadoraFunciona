@@ -1,0 +1,13 @@
+.error-message {
+    background-color: #ffcccc; /* Fondo rojo */
+  }
+  
+  .success-message {
+    background-color: #ccffcc; /* Fondo verde */
+  }
+  .tamano{
+    margin-top: 2%;
+    width: 50%;
+    margin-left: 25%;
+    height: 50%;
+  }

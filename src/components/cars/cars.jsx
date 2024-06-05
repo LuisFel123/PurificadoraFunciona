@@ -169,7 +169,7 @@ function CarCrud() {
 
       <Navbar />
       <div className="car-crud-container">
-        <h1>CRUD de Carros</h1>
+        <h1> Carros</h1>
         {userRole !== 'conductor' && (
           <div className="car-form-container">
             <form onSubmit={handleSubmit} className="car-form">

@@ -40,9 +40,12 @@ function Navbar() {
                 <li className="nav-item">
                   <a className="nav-link" href="/cars">carros</a>
                 </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/pedidos">pedidos</a>
+                </li>
               </>
             )}
-            {/* Mostrar opciones para el rol 'conductor' */}
+            {/* Mostrar opciones para el rol 'conductor'   "/pedidos" */}
             {userRole === 'conductor' && (
               <>
              <li className="nav-item">
@@ -51,6 +54,9 @@ function Navbar() {
                <li className="nav-item">
                <a className="nav-link" href="/cars">carros</a>
              </li>
+             <li className="nav-item">
+                  <a className="nav-link" href="/pedidos">pedidos</a>
+                </li>
              </>
             )}
           </ul>

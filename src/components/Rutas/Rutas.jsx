@@ -189,10 +189,15 @@ const handleConfirmDelete = async () => {
         </div>
       )}
       <Navbar />
-      <Button variant="primary" onClick={() => setShowModal(true)} className="btn-agregar-rutas">
+      {userRole !== 'conductor' && (
+        <>
+          <Button variant="primary" onClick={() => setShowModal(true)} className="btn-agregar-rutas">
         Agregar Ruta <i className="fas fa-plus"></i>
       </Button>
 
+          </>
+      )}
+    
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Agregar Ruta</Modal.Title>
