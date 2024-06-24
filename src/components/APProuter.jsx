@@ -15,6 +15,7 @@ function APProuter() {
     <Router>
       <Routes>
         <Route path="/" element={token ? <Navigate to="/home" /> : <Login />} />
+        <Route path="/login" element={<ProtectedRoute element={<Login />} redirectTo="/" />} />
         <Route path="/home" element={<ProtectedRoute element={<Home />} redirectTo="/" />} />
         <Route path="/driver" element={<ProtectedRoute element={<Driver />} redirectTo="/" />} />
         <Route path="/Rutas" element={<ProtectedRoute element={<Rutas />} redirectTo="/" />} />

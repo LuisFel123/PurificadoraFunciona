@@ -18,11 +18,13 @@
 }
 
 
-.containerDos {
+.home-containerDos {
     background-color: #f0f8ff;
     /* Azul claro para el fondo */
     padding-top: 0px;
     /* Espacio para el navbar */
+    height: 100vh;
+    /* Ajustar la altura al 100% del viewport */
     background-image: url('/public/fondoP.jpg');
     /* Ruta de la imagen de burbujas */
     background-size: cover;

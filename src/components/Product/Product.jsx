@@ -306,7 +306,7 @@ const changePage = ({ selected }) => {
     return (
         <>
             <Navbar />
-            <div className="containerDos">
+            <div className="home-containerDos">
 
                 {/*Boton para insertar productos */}
                 <Button variant="success" id="insert1" onClick={handleShowI}>Insertar Producto</Button>{' '}

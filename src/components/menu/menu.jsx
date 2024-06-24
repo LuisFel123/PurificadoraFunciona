@@ -10,8 +10,10 @@ function Navbar() {
     // Eliminar el token del localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('role');
-    // Redirigir al usuario a la página de login
-    navigate('/');
+    // Redirigir al usuario a la página den login
+    navigate('/login');
+    window.location.reload();
+
   };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
